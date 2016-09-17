@@ -9,13 +9,13 @@
 	<h:form id="loginform">
 
 		<h:panelGrid columns="2" cellpadding="5" styleClass="panelGridCenter" >
-			<h:outputText value="Username: " />
-			<p:inputText id="ProductType" value="#{prueba.product_type}"/>
-			<h:outputText value="Pass: " />
+<!-- 			<h:outputText value="Username: " /> -->
+<!-- 			<p:inputText id="ProductType" value="#{prueba.product_type}"/> -->
+			<h:outputText value="nombre: " />
 			<p:password id="TypeName" value="#{prueba.type_name}" />
 			<h:column></h:column>
-<!-- 			<p:commandButton action="#{manageBean.logIn(prueba)}" value="Log in" id="bntLog" icon="ui-icon-key" /> -->
 <!-- 			<p:commandLink actionListener="#{manageBean.sendToRegister}">Register new user</p:commandLink> -->
+			<p:commandButton action="#{mdtp.AgregarTp(prueba)}" value="Log in" id="bntLog" icon="ui-icon-key" />
 		</h:panelGrid>
 	</h:form>
 

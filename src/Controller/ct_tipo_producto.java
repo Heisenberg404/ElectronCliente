@@ -9,25 +9,19 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
-import Model.ProductType;
+import Beans.ProductType;
+import Model.MdTipoProducto;
 import Utils.Conection;
+
 @RequestScoped
-@ManagedBean(name="ct_tp")
+@ManagedBean(name = "ct_tp")
 @ViewScoped
 public class ct_tipo_producto implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	MdTipoProducto mdtp = new MdTipoProducto();
 
-	@SuppressWarnings("unused")
-	public void AgregarTp(ProductType pt) throws SQLException {
-		Connection con = Conection.getConnection();
-		CallableStatement cs = null;
-		cs = con.prepareCall("{call PROCESOSPRODUCTTYPE.AGREGAR(?)}");
-		cs.setString(1, pt.getType_name());
-		cs.execute();
-		
+	public void agregarTp(ProductType pt) throws Exception {
+		mdtp.AgregarTp(pt);
 	}
 }
