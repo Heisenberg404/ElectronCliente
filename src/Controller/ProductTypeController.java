@@ -16,7 +16,7 @@ import Utils.Conection;
 @RequestScoped
 @ManagedBean(name = "ct_tp")
 @ViewScoped
-public class ct_tipo_producto implements Serializable {
+public class ProductTypeController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	MdTipoProducto mdtp = new MdTipoProducto();
