@@ -16,7 +16,7 @@ public class Conection {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			String url = "jdbc:oracle:thin:@localhost:1521:XE";
 			Properties access = new Properties();
-			access.put("user", "ELECTRONSERVER");
+			access.put("user", "ELECTRONCLIENTE");
 			access.put("password", "1234");
 			Connection conn = DriverManager.getConnection(url, access);
 			System.out.println("ok" + conn);

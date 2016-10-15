@@ -102,16 +102,16 @@ public class Product implements Serializable {
 				+ "]";
 	}
 	
-	public List<Product> createProducts(){
-		List<Product> list = new ArrayList<Product>();
-		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
-		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
-		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
-		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
-		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
-		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
-		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
-		return list;
-	}
+//	public List<Product> createProducts(){
+//		List<Product> list = new ArrayList<Product>();
+//		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
+//		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
+//		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
+//		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
+//		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
+//		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
+//		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
+//		return list;
+//	}
 
 }

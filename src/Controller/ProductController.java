@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import Beans.Product;
+import Model.ModelProduct;
 
 
 @ManagedBean(name = "productController")
@@ -26,14 +27,18 @@ public class ProductController implements Serializable {
 
 	@ManagedProperty("#{beanProduct}")
 	private Product product;
+	private ModelProduct modelProduct = new ModelProduct();
 
 	@PostConstruct
 	public void init() {
 		
-		products = product.createProducts();
-		for (Product product : products) {
-			System.out.println(product.getRouteImage().toString());
+		try {
+			products = modelProduct.getProducts();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 	}
 
 	public List<Product> getProducts() {
