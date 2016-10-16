@@ -32,7 +32,8 @@
 				 
 				        <p:panel header="#{product.id}" style="text-align:center">
 				            <h:panelGrid columns="1" style="width:100%">
-				                <p:graphicImage value="#{product.routeImage}" width="80%" height="30%"/> 
+				                #{product.routeImage}
+				                <p:graphicImage value="#{product.graphicImage}" width="80%" height="30%"/> 
 				 
 				                <h:outputText value="#{product.name}" />
 				 

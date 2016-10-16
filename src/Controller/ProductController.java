@@ -8,6 +8,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.model.StreamedContent;
+
 import Beans.Product;
 import Model.ModelProduct;
 
@@ -22,7 +24,6 @@ public class ProductController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private List<Product> products;
-
 	private Product selectedProduct;
 
 	@ManagedProperty("#{beanProduct}")
@@ -34,6 +35,7 @@ public class ProductController implements Serializable {
 		
 		try {
 			products = modelProduct.getProducts();
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

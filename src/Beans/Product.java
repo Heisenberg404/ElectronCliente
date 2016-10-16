@@ -1,11 +1,16 @@
 package Beans;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 @ManagedBean(name = "beanProduct")
 @ApplicationScoped
@@ -22,6 +27,7 @@ public class Product implements Serializable {
 	Integer quantity;
 	Integer active;
 	String routeImage;
+	StreamedContent graphicImage;
 
 	public Product(Integer id, String name, Integer id_reference, Integer id_product_type, Integer quantity,
 			Integer active, String routeImage) {
@@ -37,6 +43,26 @@ public class Product implements Serializable {
 
 	public Product() {
 		super();
+	}
+
+	public void prepararImagen(String path) {
+
+		try {
+			graphicImage = new DefaultStreamedContent(new FileInputStream(path), "Views/images/");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
+	public StreamedContent getGraphicImage() {
+		prepararImagen(routeImage);
+		return graphicImage;
+	}
+
+	public void setGraphicImage(StreamedContent graphicImage) {
+		this.graphicImage = graphicImage;
 	}
 
 	public Integer getId() {
@@ -92,6 +118,7 @@ public class Product implements Serializable {
 	}
 
 	public void setRouteImage(String routeImage) {
+		prepararImagen(routeImage);
 		this.routeImage = routeImage;
 	}
 
@@ -101,17 +128,5 @@ public class Product implements Serializable {
 				+ id_product_type + ", quantity=" + quantity + ", active=" + active + ", routeImage=" + routeImage
 				+ "]";
 	}
-	
-//	public List<Product> createProducts(){
-//		List<Product> list = new ArrayList<Product>();
-//		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
-//		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
-//		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
-//		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
-//		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
-//		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
-//		list.add(new Product(1,"tv sony",1,1,10,1,"images/tv.jpg"));
-//		return list;
-//	}
 
 }
