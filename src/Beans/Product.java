@@ -1,16 +1,10 @@
 package Beans;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.Arrays;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 
 @ManagedBean(name = "beanProduct")
 @ApplicationScoped
@@ -26,11 +20,14 @@ public class Product implements Serializable {
 	Integer id_product_type;
 	Integer quantity;
 	Integer active;
-	String routeImage;
-	StreamedContent graphicImage;
-
+	byte[] img;
+	String ruta;
+	
+	
+	
+	
 	public Product(Integer id, String name, Integer id_reference, Integer id_product_type, Integer quantity,
-			Integer active, String routeImage) {
+			Integer active, byte[] img, String ruta) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -38,31 +35,27 @@ public class Product implements Serializable {
 		this.id_product_type = id_product_type;
 		this.quantity = quantity;
 		this.active = active;
-		this.routeImage = routeImage;
+		this.img = img;
+		this.ruta = ruta;
 	}
 
 	public Product() {
 		super();
 	}
 
-	public void prepararImagen(String path) {
-
-		try {
-			graphicImage = new DefaultStreamedContent(new FileInputStream(path), "Views/images/");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", id_reference=" + id_reference + ", id_product_type="
+				+ id_product_type + ", quantity=" + quantity + ", active=" + active + ", img=" + Arrays.toString(img)
+				+ "]";
 	}
 
-
-	public StreamedContent getGraphicImage() {
-		prepararImagen(routeImage);
-		return graphicImage;
+	public byte[] getImg() {
+		return img;
 	}
 
-	public void setGraphicImage(StreamedContent graphicImage) {
-		this.graphicImage = graphicImage;
+	public void setImg(byte[] img) {
+		this.img = img;
 	}
 
 	public Integer getId() {
@@ -113,20 +106,16 @@ public class Product implements Serializable {
 		this.active = active;
 	}
 
-	public String getRouteImage() {
-		return routeImage;
+	public String getRuta() {
+		return ruta;
 	}
 
-	public void setRouteImage(String routeImage) {
-		prepararImagen(routeImage);
-		this.routeImage = routeImage;
+	public void setRuta(String ruta) {
+		this.ruta = ruta;
 	}
 
-	@Override
-	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", id_reference=" + id_reference + ", id_product_type="
-				+ id_product_type + ", quantity=" + quantity + ", active=" + active + ", routeImage=" + routeImage
-				+ "]";
-	}
+	
 
+	
+	
 }
