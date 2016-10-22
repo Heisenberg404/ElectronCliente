@@ -17,8 +17,8 @@ import Model.ModelCliente;
 
 public class ClientController implements Serializable {
 	
-	private static final long serialVersionUID = 1L;
-	
+    private static final long serialVersionUID = 1L;
+    
 	ModelCliente modelClient = new ModelCliente();
 	
 	public void checkSession() throws Exception {

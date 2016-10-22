@@ -35,7 +35,7 @@ public class ModelCliente {
         
         if (back.equals("YES")) {
 
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", cli);
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cliente", cli);
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
         } else {
         	
