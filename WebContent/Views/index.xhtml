@@ -5,6 +5,9 @@
 
 <h:head>
 	<link type="text/css" rel="stylesheet" href="styles/style.css" />
+	  <f:event listener="#{ControllerClient.checkSession()}"
+        type="preRenderView"/>
+	
 </h:head>
 
 <h:body>

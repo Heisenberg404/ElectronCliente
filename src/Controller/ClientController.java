@@ -1,10 +1,6 @@
 package Controller;
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
@@ -19,8 +15,10 @@ import Model.ModelCliente;
 @ManagedBean(name = "ControllerClient")
 @ViewScoped
 
-public class ClientController {
+public class ClientController implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
+	
 	ModelCliente modelClient = new ModelCliente();
 	
 	public void checkSession() throws Exception {
