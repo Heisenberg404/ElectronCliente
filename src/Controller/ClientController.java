@@ -1,4 +1,5 @@
 package Controller;
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
@@ -21,6 +22,16 @@ public class ClientController implements Serializable {
     
 	ModelCliente modelClient = new ModelCliente();
 	
+	public void saveClient(Client Clients){
+		try {
+			modelClient.saveClient(Clients);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void checkSession() throws Exception {
         modelClient.checkSession();
     }
@@ -33,6 +44,17 @@ public class ClientController implements Serializable {
             e.printStackTrace();
         }
     }
+    public void closeSession()
+    {
+        try {
+        	modelClient.closeSession();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+
 		
 	
 

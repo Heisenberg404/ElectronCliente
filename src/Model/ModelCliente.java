@@ -8,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import Beans.Client;
+
 import Utils.Conection;
 
 public class ModelCliente {
@@ -16,6 +17,28 @@ public class ModelCliente {
 	}
 
 	Conection conn = new Conection();
+	
+	public void saveClient(Client ref) throws Exception {
+		Connection con = conn.getConnection();
+		CallableStatement cs = null;
+		cs = con.prepareCall("{call PKG_client.Create_CLIENT(?,?,?,?,?,?)}");
+		 // Parametros del procedimiento almacenado
+		
+		cs.setString(1, ref.getName_client());
+		cs.setInt(2, ref.getDocument_client());
+		cs.setString(3, ref.getGender());
+		cs.setString(4, ref.getUsername());
+		cs.setString(5, ref.getPass());
+		
+		// Definimos los tipos de los parametros de salida del procedimiento almacenado
+        cs.registerOutParameter(6, java.sql.Types.VARCHAR);
+		cs.execute();
+		// Se obtienen la salida del procedimineto almacenado
+        String back = cs.getString(6);
+        System.out.println(back);
+
+	}
+	
 	
 	public void iniciarSesion(Client cli) throws Exception {
         Connection con = conn.getConnection();

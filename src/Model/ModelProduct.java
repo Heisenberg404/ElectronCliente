@@ -75,7 +75,7 @@ public class ModelProduct {
 //		nombreArchivo.replaceAll("\\s", "");
 //		nombreArchivo.toLowerCase();
 //		String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("");
-		 path = "C:\\Users\\AM\\workspaceElectron\\ElectronCliente\\WebContent\\Views\\images\\";
+		 path = "C:\\Users\\Alexandra Ardila\\git\\ElectronCliente\\WebContent\\Views\\images";
 		// String path =
 		// servletContext.getExternalContext().getRealPath("")+"\\resources\\images\\tmp"+nombreArchivo+".jpg";
 		File f = new File(path + nombreArchivo + ".jpg");

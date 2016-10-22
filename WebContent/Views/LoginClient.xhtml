@@ -33,16 +33,58 @@
             <h:column />
             <p:commandButton action="#{ControllerClient.iniciarSesion(beanClient)}" 
                              icon="ui-icon-key" value="Login" />
-            <br></br>                 
-            <a href="http://www.comocreartuweb.com"  title="Crear páginas web">Registrarse</a>
-            
-			
-                             
+            <h:column />
+			<p:commandButton icon="ui-icon-person" value="Register"
+			oncomplete="PF('dlgNuevo').show();" update=":formCreate"		
+					style="font-size: 14px;"  />
+					
+		 </h:panelGrid>
+	</h:form>
+	<p:dialog id="dlgN" header="New Client" widgetVar="dlgNuevo"
+				showEffect="explode" hideEffect="explode" modal="true">
 
-        </h:panelGrid>
+				<h:form id="formCreate">
+					<p:panelGrid id="gridCreate" columns="2"
+						style="margin: 0 auto; font-size: 12px;">
+
+						<p:outputLabel value="Name: " />
+						<p:inputText value="#{beanClient.name_client}"
+							required="true" requiredMessage="Nombres es oblligatorio" />
+
+						<p:outputLabel value="Document" />
+						<p:inputText value="#{beanClient.document_client}"
+							required="true" requiredMessage="document es oblligatorio" />
 
 
-    </h:form>
+						<p:outputLabel value="Gender:" />
+						<p:inputText value="#{beanClient.gender}"
+							required="true" requiredMessage="Gender es oblligatorio" />
+
+
+
+						<p:outputLabel value="Username:" />
+						<p:inputText value="#{beanClient.username}" />
+
+
+						<p:outputLabel value="Password:" />
+						<p:password id="nonFeedback"
+							value="#{beanClient.pass}" required="true"
+							requiredMessage="pass es oblligatorio" />
+
+
+						
+
+						<p:commandButton value="Create"
+							action="#{ControllerClient.saveClient(beanClient)}"
+							oncomplete="PF('dlgNuevo').hide();"
+							/>
+
+						<p:commandButton value="Cancelar"
+							immediate="true" onclick="PF('dlgNuevo').hide();" />
+
+					</p:panelGrid>
+				</h:form>
+			</p:dialog>
     </div>
 </p:panel>
 
