@@ -53,7 +53,7 @@ public class ModelProduct {
 		while (rs.next()) {
 			// System.out.println(rs.getInt("ID_PRODUCT"));
 			Product pr = new Product();
-
+				
 			pr.setId(rs.getInt("ID_PRODUCT"));
 			pr.setName(rs.getString("PRODUCT_NAME"));
 			pr.setId_reference(rs.getInt("ID_REFERENCE"));

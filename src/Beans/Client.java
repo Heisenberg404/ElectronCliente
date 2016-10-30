@@ -1,9 +1,13 @@
 package Beans;
 
 import java.io.Serializable;
+
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
+
 @ManagedBean(name = "beanClient")
+@ApplicationScoped
 public class Client implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id_client;

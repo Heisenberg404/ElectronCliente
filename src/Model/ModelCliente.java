@@ -40,7 +40,7 @@ public class ModelCliente {
 	}
 	
 	
-	public void iniciarSesion(Client cli) throws Exception {
+	public Client iniciarSesion(Client cli) throws Exception {
         Connection con = conn.getConnection();
         CallableStatement cs = null;
         cs = con.prepareCall("{call PKG_Client.QueryClient(?,?,?)}");
@@ -60,10 +60,17 @@ public class ModelCliente {
 
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cliente", cli);
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+            
+            
+            return cli;
+            
         } else {
         	
-            FacesContext.getCurrentInstance().addMessage(null , new FacesMessage(FacesMessage.SEVERITY_WARN,"Error","User no existe")); 
+            FacesContext.getCurrentInstance().addMessage(null , new FacesMessage(FacesMessage.SEVERITY_WARN,"Error","Client no existe")); 
+            return null;
         }
+        
+       
 
     }
     
@@ -82,6 +89,7 @@ public class ModelCliente {
 //        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();    
     }
+
 	
 
 }

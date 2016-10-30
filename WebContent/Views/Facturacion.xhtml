@@ -1,0 +1,77 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+  <f:event listener="#{ControllerClient.checkSession()}" type="preRenderView"/>	
+</h:head>
+
+<h:body>
+
+	<p:panel header="Check in" style="height:100%;width:100%">
+
+		<div class="row" align="center">
+
+			<p:growl id="mensajeGeneral" autoUpdate="true" sticky="false"
+				showDetail="true" life="3000" />
+
+
+			
+
+			<p:separator />
+
+			<h:form id="formShowProduct">
+				<p:dataTable id="TableShowProduct" var="pro"
+					value="#{ControllerBillDetail.lstBill}"
+					emptyMessage="No hay datos de empleados" style="font-size: 12px;"
+					paginator="true" paginatorPosition="bottom" rows="10">
+
+					<p:column headerText="Product id" visible="false">
+						<h:outputText value="#{pro.id}" />
+					</p:column>
+
+					<p:column headerText="Product Name">
+						<h:outputText value="#{pro.name}" />
+					</p:column>
+
+					<p:column headerText="Reference">
+						<h:outputText value="#{pro.id_reference}" />
+					</p:column>
+
+					<p:column headerText="price">
+						<h:outputText value="#{pro.price}" />
+					</p:column>
+
+					<p:column headerText="Quantity">
+						<h:outputText value="#{pro.quantity}" />
+					</p:column>
+
+					<p:column headerText="Active">
+						<h:outputText value="#{pro.active}" />
+					</p:column>
+
+				</p:dataTable>
+
+			</h:form>
+		</div>
+		<div class="row" align="center">
+			
+		<h:form>
+		
+		
+				<p:commandButton value="BUY PRODUCTS"
+					actionListener="#{productsController.saveProduct(products)}" 
+					
+					style="font-size: 14px;" />
+					<p:outputLabel value="Client: " />
+					<h:outputText value="#{ControllerBillDetail.id_client}"   
+					style="margin-left: 12px;"  />
+		
+		</h:form>
+		</div>
+
+	</p:panel>
+
+</h:body>
+</html>

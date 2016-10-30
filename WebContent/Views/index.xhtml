@@ -12,11 +12,20 @@
 		<p:layoutUnit position="center">
 			<p:graphicImage value="images/LogoElectro2.png" width="20%"
 				height="50%" />
+				
+				<p:outputLabel value="#{beanClient.username}"></p:outputLabel>
+				
 		</p:layoutUnit>
+		
 	</p:layout>
 	<h:form>
+		
+					
 			<p:commandButton value="Logout" icon="ui-icon-closethick"
-				actionListener="#{ControllerClient.closeSession()}" />
+				actionListener="#{ControllerClient.closeSession()}" 
+				style="font-size: 14px;" />
+				
+					
 	</h:form>
 	<p:layout style="min-width:400px;min-height:800px;">
 		<p:layoutUnit position="west" resizable="true" size="300" minSize="40"
@@ -26,6 +35,7 @@
 
 		<p:layoutUnit position="center">
 			<h:form id="form">
+			
 				<p:dataGrid var="product" value="#{productController.products}"
 					columns="3" layout="grid" rows="12" paginator="true" id="cars"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"

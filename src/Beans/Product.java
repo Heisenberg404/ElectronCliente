@@ -22,21 +22,21 @@ public class Product implements Serializable {
 	Integer active;
 	byte[] img;
 	String ruta;
+	Integer price;
 	
 	
 	
 	
 	public Product(Integer id, String name, Integer id_reference, Integer id_product_type, Integer quantity,
-			Integer active, byte[] img, String ruta) {
+			Integer active, byte[] img, String ruta, Integer price) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.id_reference = id_reference;
-		this.id_product_type = id_product_type;
+		this.price = price;
 		this.quantity = quantity;
 		this.active = active;
-		this.img = img;
-		this.ruta = ruta;
+		
 	}
 
 	public Product() {
@@ -46,8 +46,17 @@ public class Product implements Serializable {
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", id_reference=" + id_reference + ", id_product_type="
-				+ id_product_type + ", quantity=" + quantity + ", active=" + active + ", img=" + Arrays.toString(img)
+				+ id_product_type + ", quantity=" + quantity + ", active=" + active + ", price=" + price + "img=" + Arrays.toString(img)
 				+ "]";
+	}
+	
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
 
 	public byte[] getImg() {
