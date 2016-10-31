@@ -60,6 +60,7 @@ public class ModelProduct {
 			pr.setId_product_type(rs.getInt("ID_PRODUCT_TYPE"));
 			pr.setQuantity(rs.getInt("QUANTITY"));
 			pr.setActive(rs.getInt("ACTIVE"));
+			pr.setPrice(rs.getInt("PRICE"));
 			pr.setImg(rs.getBytes("BLOB_IMAGE"));
 			if (pr.getImg() != null) {
 				pr.setRuta(guardarBlobTemp(pr.getImg(), pr.getName()));
@@ -73,7 +74,7 @@ public class ModelProduct {
 	public String guardarBlobTemp(byte[] bytes, String nombreArchivo) {
 		String locationImage = null;
 		
-		//muchachos aqui reemplazar el la variable path por la carpeta local de uds
+		//muchachos aqui reemplazar la variable path por la carpeta local de uds
 		//el archivo ModelProduct.java en esta linea siempre estara comentado el de github
 		//y se conservara de la siguiente forma
 		
@@ -82,7 +83,7 @@ public class ModelProduct {
 		//no eliminar el comentario de arriba ni modificarlo, simplemente se copia abajo despues
 		//de realizar una sincronizacion, y reemplazar con su propia ruta
 		//
-//				en el momento que requieran subir cambios, siempre eliminar la linea que uds copiaron
+		//		en el momento que requieran subir cambios, siempre eliminar la linea que uds copiaron
 		//de esa forma evitamos cualquier tipo de conflicto con este archivo
 		
 		File f = new File(path + nombreArchivo + ".jpg");
