@@ -72,14 +72,20 @@ public class ModelProduct {
 
 	public String guardarBlobTemp(byte[] bytes, String nombreArchivo) {
 		String locationImage = null;
-//		nombreArchivo.replaceAll("\\s", "");
-//		nombreArchivo.toLowerCase();
-//		String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("");
-		 path = "C:\\Users\\Alexandra Ardila\\git\\ElectronCliente\\WebContent\\Views\\images";
-		// String path =
-		// servletContext.getExternalContext().getRealPath("")+"\\resources\\images\\tmp"+nombreArchivo+".jpg";
+		
+		//muchachos aqui reemplazar el la variable path por la carpeta local de uds
+		//el archivo ModelProduct.java en esta linea siempre estara comentado el de github
+		//y se conservara de la siguiente forma
+		
+		//path = "C:\\Users\\Alexandra Ardila\\git\\ElectronCliente\\WebContent\\Views\\images";
+		
+		//no eliminar el comentario de arriba ni modificarlo, simplemente se copia abajo despues
+		//de realizar una sincronizacion, y reemplazar con su propia ruta
+		//
+//				en el momento que requieran subir cambios, siempre eliminar la linea que uds copiaron
+		//de esa forma evitamos cualquier tipo de conflicto con este archivo
+		
 		File f = new File(path + nombreArchivo + ".jpg");
-		// if(!f.exists()){
 		InputStream in;
 		if (bytes != null) {
 			try {
