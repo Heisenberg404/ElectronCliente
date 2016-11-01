@@ -4,38 +4,44 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-  <f:event listener="#{ControllerClient.checkSession()}" type="preRenderView"/>	
+	<f:event listener="#{ControllerClient.checkSession()}"
+		type="preRenderView" />
+	<link rel="stylesheet" type="text/css" href="styles/style.css"/>
+
 </h:head>
 
 <h:body>
-	<p:layout style="min-width:400px;min-height:200px; border-style: none;">
-		<p:layoutUnit position="center">
-			<p:graphicImage value="images/LogoElectro2.png" width="20%"
-				height="50%" />
-				
-				<p:outputLabel value="#{beanClient.username}"></p:outputLabel>
-				
+	<p:layout style="min-width:400px;min-height:200px;">
+		<p:layoutUnit position="center" gutter="0">
+			<p:panelGrid id="header" style="width: 100%; border: none;">
+				<p:column style="width: 90%; text-align: center;">
+					<p:graphicImage value="images/LogoElectro2.png" width="20%"
+						height="50%" />
+				</p:column>
+				<p:column style="width: 10%; text-align: right;">
+					<h:form>
+						<h:outputText value="#{beanClient.username}">USUARIO</h:outputText>
+						<p:commandButton value="Logout" icon="ui-icon-closethick"
+							actionListener="#{ControllerClient.closeSession()}"
+							style="font-size: 14px;" />
+					</h:form>
+				</p:column>
+
+			</p:panelGrid>
+
 		</p:layoutUnit>
-		
+
 	</p:layout>
-	<h:form>
-		
-					
-			<p:commandButton value="Logout" icon="ui-icon-closethick"
-				actionListener="#{ControllerClient.closeSession()}" 
-				style="font-size: 14px;" />
-				
-					
-	</h:form>
+
 	<p:layout style="min-width:400px;min-height:800px;">
-		<p:layoutUnit position="west" resizable="true" size="300" minSize="40"
+		<p:layoutUnit gutter="0" position="west" resizable="true" size="300" minSize="40"
 			maxSize="300">
 	        	West
 	    	</p:layoutUnit>
 
 		<p:layoutUnit position="center">
 			<h:form id="form">
-			
+
 				<p:dataGrid var="product" value="#{productController.products}"
 					columns="3" layout="grid" rows="12" paginator="true" id="cars"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -47,50 +53,58 @@
 
 					<p:panel header="#{product.id}" style="text-align:center">
 						<h:panelGrid columns="1" style="width:100%">
-							
-							<p:graphicImage 
-								value="#{product.ruta}" width="80%"
-								height="30%" >
+
+							<p:graphicImage value="#{product.ruta}" width="80%" height="30%">
 								<f:param name="pid" value="product.id"></f:param>
 							</p:graphicImage>
 							<h:outputText value="#{product.name}" />
 
-			                <p:commandLink update="form" oncomplete="PF('productDialog').show()" title="View Detail">
-			                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
-			                    <f:setPropertyActionListener value="#{product}" target="#{productController.selectedProduct}" />
-			                </p:commandLink>
+							<p:commandLink update="form"
+								oncomplete="PF('productDialog').show()" title="View Detail">
+								<h:outputText styleClass="ui-icon ui-icon-search"
+									style="margin:0 auto;" />
+								<f:setPropertyActionListener value="#{product}"
+									target="#{productController.selectedProduct}" />
+							</p:commandLink>
 						</h:panelGrid>
 					</p:panel>
 
 				</p:dataGrid>
 
-			    <p:dialog header="Product Info" position="top" widgetVar="productDialog" closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
-			        <h:form id="formDetail">
-				        <p:outputPanel id="productDetail" style="text-align:center;">
-				            <p:panelGrid  columns="2" rendered="#{not empty productController.selectedProduct}" 
-				            	columnClasses="label,value">
-				                <f:facet name="header">
-				                    <p:graphicImage value="#{productController.selectedProduct.ruta}"/> 
-				                </f:facet>
-	
-				                <h:outputText value="Id:" />
-				                <h:outputText value="#{productController.selectedProduct.id}" />
-	
-				                <h:outputText value="Name" />
-				                <h:outputText value="#{productController.selectedProduct.name}" />
-	
-				                <h:outputText value="Price" />
-				                <h:outputText value="$#{productController.selectedProduct.price}" />
-				                
-				            </p:panelGrid><br/>
-				            <p:commandButton  value="Add to Cart" icon="ui-icon fa fa-fw fa-shopping-cart"
-				                	 actionListener="#{ControllerBillDetail.addToCart(productController.selectedProduct)}"
-				                	 oncomplete="PF('productDialog').hide()"
-				                	 process="@this formDetail">
-		                	 </p:commandButton>
-				        </p:outputPanel>
-			        </h:form>
-			    </p:dialog>
+				<p:dialog header="Product Info" position="top"
+					widgetVar="productDialog" closeOnEscape="true" showEffect="fade"
+					hideEffect="fade" resizable="false">
+					<h:form id="formDetail">
+						<p:outputPanel id="productDetail" style="text-align:center;">
+							<p:panelGrid columns="2"
+								rendered="#{not empty productController.selectedProduct}"
+								columnClasses="label,value">
+								<f:facet name="header">
+									<p:graphicImage
+										value="#{productController.selectedProduct.ruta}" />
+								</f:facet>
+
+								<h:outputText value="Id:" />
+								<h:outputText value="#{productController.selectedProduct.id}" />
+
+								<h:outputText value="Name" />
+								<h:outputText value="#{productController.selectedProduct.name}" />
+
+								<h:outputText value="Price" />
+								<h:outputText
+									value="$#{productController.selectedProduct.price}" />
+
+							</p:panelGrid>
+							<br />
+							<p:commandButton value="Add to Cart"
+								icon="ui-icon fa fa-fw fa-shopping-cart"
+								actionListener="#{ControllerBillDetail.addToCart(productController.selectedProduct)}"
+								oncomplete="PF('productDialog').hide()"
+								process="@this formDetail">
+							</p:commandButton>
+						</p:outputPanel>
+					</h:form>
+				</p:dialog>
 			</h:form>
 		</p:layoutUnit>
 	</p:layout>
