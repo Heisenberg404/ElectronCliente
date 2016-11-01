@@ -16,7 +16,7 @@ import Model.ModelBill;
 
 
 
-@RequestScoped
+
 @ManagedBean(name = "ControllerBill")
 @ViewScoped
 public class BillController implements Serializable{

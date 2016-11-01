@@ -5,15 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 import Beans.Bill_detail;
 import Beans.Product;
-@RequestScoped
+
+
 @ManagedBean(name = "ControllerBillDetail")
-@ViewScoped
+@ApplicationScoped
 public class BillDetailController implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -61,6 +63,11 @@ public class BillDetailController implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void addToCart(Product product){
+		lstBill.add(product);
+		
 	}
 	
 	public void llenarLista()

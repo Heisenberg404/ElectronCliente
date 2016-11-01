@@ -64,23 +64,32 @@
 
 				</p:dataGrid>
 
-			    <p:dialog header="Product Info" widgetVar="productDialog" closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
-			        <p:outputPanel id="productDetail" style="text-align:center;">
-			            <p:panelGrid  columns="2" rendered="#{not empty productController.selectedProduct}" columnClasses="label,value">
-			                <f:facet name="header">
-			                    <p:graphicImage value="#{productController.selectedProduct.ruta}"/> 
-			                </f:facet>
-
-			                <h:outputText value="Id:" />
-			                <h:outputText value="#{productController.selectedProduct.id}" />
-
-			                <h:outputText value="Name" />
-			                <h:outputText value="#{productController.selectedProduct.name}" />
-
-			                <h:outputText value="Price" />
-			                <h:outputText value="$#{productController.selectedProduct.price}" />
-			            </p:panelGrid>
-			        </p:outputPanel>
+			    <p:dialog header="Product Info" position="top" widgetVar="productDialog" closeOnEscape="true" showEffect="fade" hideEffect="fade" resizable="false">
+			        <h:form id="formDetail">
+				        <p:outputPanel id="productDetail" style="text-align:center;">
+				            <p:panelGrid  columns="2" rendered="#{not empty productController.selectedProduct}" 
+				            	columnClasses="label,value">
+				                <f:facet name="header">
+				                    <p:graphicImage value="#{productController.selectedProduct.ruta}"/> 
+				                </f:facet>
+	
+				                <h:outputText value="Id:" />
+				                <h:outputText value="#{productController.selectedProduct.id}" />
+	
+				                <h:outputText value="Name" />
+				                <h:outputText value="#{productController.selectedProduct.name}" />
+	
+				                <h:outputText value="Price" />
+				                <h:outputText value="$#{productController.selectedProduct.price}" />
+				                
+				            </p:panelGrid><br/>
+				            <p:commandButton  value="Add to Cart" icon="ui-icon fa fa-fw fa-shopping-cart"
+				                	 actionListener="#{ControllerBillDetail.addToCart(productController.selectedProduct)}"
+				                	 oncomplete="PF('productDialog').hide()"
+				                	 process="@this formDetail">
+		                	 </p:commandButton>
+				        </p:outputPanel>
+			        </h:form>
 			    </p:dialog>
 			</h:form>
 		</p:layoutUnit>
