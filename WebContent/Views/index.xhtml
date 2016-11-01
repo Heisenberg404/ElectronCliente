@@ -6,7 +6,7 @@
 <h:head>
 	<f:event listener="#{ControllerClient.checkSession()}"
 		type="preRenderView" />
-	<link rel="stylesheet" type="text/css" href="styles/style.css"/>
+	<link rel="stylesheet" type="text/css" href="styles/style.css" />
 
 </h:head>
 
@@ -19,11 +19,16 @@
 						height="50%" />
 				</p:column>
 				<p:column style="width: 10%; text-align: right;">
-					<h:form>
-						<h:outputText value="#{beanClient.username}">USUARIO</h:outputText>
+					<h:form id="formCloseS">
+						<h:outputText value="#{beanClient.username}"></h:outputText>
 						<p:commandButton value="Logout" icon="ui-icon-closethick"
 							actionListener="#{ControllerClient.closeSession()}"
 							style="font-size: 14px;" />
+					</h:form>
+					<h:form id="formCart">
+						<p:commandButton value="Go to Cart" id="withIcon" 
+							action="#{productController.redirectToCart()}"
+							icon="fa fa-fw fa-cart-plus" />
 					</h:form>
 				</p:column>
 
@@ -34,9 +39,9 @@
 	</p:layout>
 
 	<p:layout style="min-width:400px;min-height:800px;">
-		<p:layoutUnit gutter="0" position="west" resizable="true" size="300" minSize="40"
-			maxSize="300">
-	        	West
+		<p:layoutUnit gutter="0" position="west" resizable="true" size="300"
+			minSize="40" maxSize="300">
+	        	to do Filters
 	    	</p:layoutUnit>
 
 		<p:layoutUnit position="center">
