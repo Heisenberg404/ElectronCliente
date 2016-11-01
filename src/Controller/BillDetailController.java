@@ -10,18 +10,34 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
+import Beans.Bill;
 import Beans.Bill_detail;
 import Beans.Product;
+import Model.ModelBillDetail;
 
 
 @ManagedBean(name = "ControllerBillDetail")
 @ApplicationScoped
 public class BillDetailController implements Serializable{
-	
+
+	ModelBillDetail modelBillDetail = new ModelBillDetail();
+
 	private static final long serialVersionUID = 1L;
+
 	List<Product> lstBill = new ArrayList<Product>();
 	Integer id_client;
+	Integer total;
 	
+
+	public Integer getTotal() {
+		return total;
+	}
+
+
+	public void setTotal(Integer total) {
+		this.total = total;
+	}
+
 
 	public List<Product> getLstBill() {
 		return lstBill;
@@ -59,6 +75,7 @@ public class BillDetailController implements Serializable{
 	public void init() {
 		try {
 			llenarLista();
+			totalfactura();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,9 +101,20 @@ public class BillDetailController implements Serializable{
 		lstBill=lstllenar;
 		id_client = 45;
 	}
-	
-	
-	
-
+	public void totalfactura() throws Exception{
+		//Bill_detail objTotal = new Bill_detail();
+		for (Product objTotal : lstBill ){
+			total = total + objTotal.getPrice();
+		}
+	}
+	public void saveBill(Bill bill)
+	{
+		try {
+			modelBillDetail.saveBill(bill,lstBill);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
 
