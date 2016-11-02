@@ -4,8 +4,9 @@ import java.io.Serializable;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
-
+@ViewScoped
 @ManagedBean(name = "beanClient")
 @ApplicationScoped
 public class Client implements Serializable {

@@ -9,7 +9,7 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
-
+import Beans.Client;
 import Beans.Bill;
 import Beans.Bill_detail;
 import Beans.Product;
@@ -25,7 +25,7 @@ public class BillDetailController implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	List<Product> lstBill = new ArrayList<Product>();
-	Integer id_client;
+	
 	Integer total;
 	
 
@@ -49,20 +49,11 @@ public class BillDetailController implements Serializable{
 	}
 
 
-	public Integer getId_client() {
-		return id_client;
-	}
-
-
-	public void setId_client(Integer id_client) {
-		this.id_client = id_client;
-	}
-
-
-	public BillDetailController(List<Product> ListParamet, Integer client){
+	public BillDetailController(List<Product> ListParamet){
 		
 		lstBill = ListParamet;
-		id_client = client;
+		 
+
 	
 	}
 	
@@ -74,7 +65,7 @@ public class BillDetailController implements Serializable{
 	@PostConstruct
 	public void init() {
 		try {
-			llenarLista();
+			//llenarLista();
 			totalfactura();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -99,7 +90,7 @@ public class BillDetailController implements Serializable{
 		lstllenar.add(new Product(2,"moto",1,8000,1,1,null,"ruta",2222));
 		
 		lstBill=lstllenar;
-		id_client = 45;
+		//id_client = 45;
 	}
 	public void totalfactura() throws Exception{
 		//Bill_detail objTotal = new Bill_detail();
@@ -107,10 +98,14 @@ public class BillDetailController implements Serializable{
 			total = total + objTotal.getPrice();
 		}
 	}
-	public void saveBill(Bill bill)
+	
+
+		
+	
+	public void saveBill(Client cli)
 	{
 		try {
-			modelBillDetail.saveBill(bill,lstBill);
+			modelBillDetail.saveBill(cli,total,lstBill);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
