@@ -10,7 +10,7 @@ import javax.faces.bean.ViewScoped;
 import Beans.Client;
 import Model.ModelCliente;
 
-@RequestScoped
+
 @ManagedBean(name = "ControllerClient")
 @ViewScoped
 public class ClientController implements Serializable {

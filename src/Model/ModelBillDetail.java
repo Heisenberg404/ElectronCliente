@@ -3,10 +3,13 @@ package Model;
 
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Iterator;
 
@@ -25,26 +28,34 @@ public class ModelBillDetail {
 	super();
 	}
 	Conection conn = new Conection();
-	public void saveBill(Client id_client, Integer total, List<Product> lstProduct) throws Exception {
+	public void saveBill(Client id_client, float total, List<Product> lstProduct) throws Exception {
 		Connection con = conn.getConnection();
 		Client cli = new Client();
-		Date fecha = new Date(total, total, total);
+		//Date fecha = 
+		/*DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		String fechaString = dateFormat.format(fecha);
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		Date fecha2 = (Date) formato.parse(fechaString);*/
+		
+		java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+		
 		cli = getDataClient(id_client);
 		CallableStatement cs = null;
 		cs = con.prepareCall("{call PKG_BILL.Create_bill(?,?,?,?,?)}"); //MODIFICAR EL PROCEDIMIENTO PARA QUE DEVUELVA EL NUMERO DE LA FACTURA 
 		// Parametros del procedimiento almacenado
 		cs.setInt(1, cli.getId_client());
-		cs.setDate(2, fecha);
+		cs.setDate(2, date);
 		cs.setFloat(3, total);
 		
 		// Definimos los tipos de los parametros de salida del procedimiento
 		// almacenado
-		cs.registerOutParameter(4, java.sql.Types.INTEGER);
-		cs.registerOutParameter(5, java.sql.Types.VARCHAR);
+		cs.registerOutParameter(4, java.sql.Types.VARCHAR);
+		cs.registerOutParameter(5, java.sql.Types.INTEGER);
 		cs.execute();
 		// Se obtienen la salida del procedimineto almacenado
-		int back1 = cs.getInt(4);
-		String back = cs.getString(5);
+		
+		String back = cs.getString(4);
+		int back1 = cs.getInt(5);
 		
 		System.out.println(back1);
 		System.out.println(back);

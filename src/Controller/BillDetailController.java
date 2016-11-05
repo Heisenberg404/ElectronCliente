@@ -7,7 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+
 import javax.faces.bean.ViewScoped;
 import Beans.Client;
 import Beans.Bill;
@@ -26,15 +26,22 @@ public class BillDetailController implements Serializable{
 
 	List<Product> lstBill = new ArrayList<Product>();
 	
-	Integer total;
+	
+	
+	
+	
+	
+	float total  =5000;
 	
 
-	public Integer getTotal() {
+	public float getTotal() {
+		
+		
 		return total;
 	}
 
 
-	public void setTotal(Integer total) {
+	public void setTotal(float total) {
 		this.total = total;
 	}
 
@@ -62,8 +69,8 @@ public class BillDetailController implements Serializable{
 	}
 
 
-	@PostConstruct
-	public void init() {
+	//@PostConstruct
+	/*public void init() {
 		try {
 			//llenarLista();
 			totalfactura();
@@ -71,7 +78,7 @@ public class BillDetailController implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	public void addToCart(Product product){
 		lstBill.add(product);
@@ -102,10 +109,15 @@ public class BillDetailController implements Serializable{
 
 		
 	
-	public void saveBill(Client cli)
+	public void saveBill()
 	{
+		
 		try {
-			modelBillDetail.saveBill(cli,total,lstBill);
+			Client client = new Client();
+			client.setPass("1234");
+			client.setUsername("ale");
+					
+			modelBillDetail.saveBill(client,total,lstBill);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

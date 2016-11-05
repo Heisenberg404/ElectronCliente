@@ -5,6 +5,7 @@
 
 <h:head>
   <f:event listener="#{ControllerClient.checkSession()}" type="preRenderView"/>	
+  <link rel="stylesheet" type="text/css" href="styles/style.css" />
 </h:head>
 
 <h:body>
@@ -61,12 +62,11 @@
 		
 		
 				<p:commandButton value="BUY PRODUCTS"
-					actionListener="#{ControllerBillDetail.saveBill(beanClient)}" 
+					actionListener="#{ControllerBillDetail.saveBill()}" 
 					
 					style="font-size: 14px;" />
 					<p:outputLabel value="Client: " />
-					<h:outputText value="#{beanClient.username}"   
-					style="margin-left: 12px;"  />
+					<h:outputText value="#{beanClient.username}"></h:outputText>
 					
 					<p:outputLabel value="Total: " />
 					<h:outputText value="#{ControllerBillDetail.total}"   
