@@ -56,6 +56,17 @@ public class ModelBillDetail {
 		System.out.println(back);
 		saveBillDetail(back1, lstProduct);
 		con.close();
+		
+		if(back.equals("BILL CREATE"))
+		{
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Your purchase has been successful in the coming days we will send you the product.", ""));
+		}
+		else
+		{
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "An error has occurred"));
+		}
 }
 	
 	public Client getDataClient(Client cli) throws Exception{
@@ -70,8 +81,7 @@ public class ModelBillDetail {
 		cs.execute();
 		rs = (ResultSet) cs.getObject(3);
 		Client datoClient = new Client();
-		while (rs.next()) {
-			
+		while (rs.next()) {			
 
 			datoClient.setId_client(rs.getInt("ID_CLIENT"));
 			
@@ -112,6 +122,8 @@ public void saveBillDetail(int num_factura, List<Product> lstProduct) throws Exc
 		}
 		
 		con.close();
+		
+		
 	}
 	
 	

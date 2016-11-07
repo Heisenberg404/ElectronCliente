@@ -1,46 +1,48 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <title>Login Client</title>
+	<title>Login Client</title>
+	<link rel="shortcut icon" href="../Views/images/electro.ico" type="image/x-icon" />
 </h:head>
 <body>
-<p:panel header="Login Client" style="height:100%;width:100%">
-    <div class="row" align="center">
-		<img src="../Views/images/LogoElectro2.png" width="373px" height="272px" align="top" />
-	</div>
-    <div class="row" align="center">
-	<br>
-	
-	
-	
-	</br>	
-    <h:form >
-        <p:messages autoUpdate="true" showDetail="true" />
-        <h:panelGrid columns="2">
-        	
-            <p:outputLabel for="txtUsuario" value="User" />
-            <p:inputText id="txtUsuario" value="#{beanClient.username}" required="true" />
-           
+	<p:panel header="Login Client" style="height:100%;width:100%">
+		<div class="row" align="center">
+			<img src="../Views/images/LogoElectro2.png" width="373px"
+				height="272px" align="top" />
+		</div>
+		<div class="row" align="center">
+			<br> </br>
 
-            <p:outputLabel for="txtPass" value="Password" />
-            <p:password id="txtPass" value="#{beanClient.pass}" required="true" />
-            
-             
-            <h:column />
-            <p:commandButton action="#{ControllerClient.iniciarSesion(beanClient)}" 
-                             icon="ui-icon-key" value="Login" />
-            <h:column />
-			<p:commandButton icon="ui-icon-person" value="Register"
-			oncomplete="PF('dlgNuevo').show();" update=":formCreate"		
-					style="font-size: 14px;"  />
-					
-		 </h:panelGrid>
-	</h:form>
-	<p:dialog id="dlgN" header="New Client" widgetVar="dlgNuevo"
+			<h:panelGrid columns="6">
+				<h:form id="Login" >
+					<p:messages autoUpdate="true" showDetail="true" closable="true"
+						style="width: 30%;" />
+					<p:outputLabel for="txtUsuario" value="User" />
+					<p:inputText id="txtUsuario" value="#{beanClient.username}"
+						required="true" />
+
+					<p:outputLabel for="txtPass" value=" Password" />
+					<p:password id="txtPass" value="#{beanClient.pass}" required="true" />
+
+					<h:column />
+					<p:commandButton
+						action="#{ControllerClient.iniciarSesion(beanClient)}"
+						icon="ui-icon-key" value="Login" />
+					<h:column />
+				</h:form>
+				<br></br>
+				<h:form id="register">
+					<p:commandButton icon="ui-icon-person" value="Register"
+						oncomplete="PF('dlgNuevo').show();" update=":formCreate"
+						style="font-size: 14px;" />
+				</h:form>
+			</h:panelGrid>
+		
+			<p:dialog id="dlgN" header="New Client" widgetVar="dlgNuevo"
 				showEffect="explode" hideEffect="explode" modal="true">
 
 				<h:form id="formCreate">
@@ -48,17 +50,17 @@
 						style="margin: 0 auto; font-size: 12px;">
 
 						<p:outputLabel value="Name: " />
-						<p:inputText value="#{beanClient.name_client}"
-							required="true" requiredMessage="Nombres es oblligatorio" />
+						<p:inputText value="#{beanClient.name_client}" required="true"
+							requiredMessage="Nombres es oblligatorio" />
 
 						<p:outputLabel value="Document" />
-						<p:inputText value="#{beanClient.document_client}"
-							required="true" requiredMessage="document es oblligatorio" />
+						<p:inputText value="#{beanClient.document_client}" required="true"
+							requiredMessage="document es oblligatorio" />
 
 
 						<p:outputLabel value="Gender:" />
-						<p:inputText value="#{beanClient.gender}"
-							required="true" requiredMessage="Gender es oblligatorio" />
+						<p:inputText value="#{beanClient.gender}" required="true"
+							requiredMessage="Gender es oblligatorio" />
 
 
 
@@ -67,26 +69,24 @@
 
 
 						<p:outputLabel value="Password:" />
-						<p:password id="nonFeedback"
-							value="#{beanClient.pass}" required="true"
-							requiredMessage="pass es oblligatorio" />
+						<p:password id="nonFeedback" value="#{beanClient.pass}"
+							required="true" requiredMessage="pass es oblligatorio" />
 
 
-						
+
 
 						<p:commandButton value="Create"
 							action="#{ControllerClient.saveClient(beanClient)}"
-							oncomplete="PF('dlgNuevo').hide();"
-							/>
+							oncomplete="PF('dlgNuevo').hide();" />
 
-						<p:commandButton value="Cancelar"
-							immediate="true" onclick="PF('dlgNuevo').hide();" />
+						<p:commandButton value="Cancelar" immediate="true"
+							onclick="PF('dlgNuevo').hide();" />
 
 					</p:panelGrid>
 				</h:form>
 			</p:dialog>
-    </div>
-</p:panel>
+		</div>
+	</p:panel>
 
 </body>
 </html>

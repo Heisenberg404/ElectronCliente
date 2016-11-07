@@ -37,6 +37,15 @@ public class ModelCliente {
         String back = cs.getString(6);
         System.out.println(back);
 
+        if(back.equals("CLIENT CREATE")){
+        	
+    		FacesContext.getCurrentInstance().addMessage(null,
+    				new FacesMessage(FacesMessage.SEVERITY_INFO, "Client was created","" ));
+        }
+        else if(back.equals("CLIENT EXIST")){
+    		FacesContext.getCurrentInstance().addMessage(null,
+    				new FacesMessage(FacesMessage.SEVERITY_INFO, "The customer already exists","" ));
+        }
 	}
 	
 	
@@ -59,14 +68,13 @@ public class ModelCliente {
         if (back.equals("YES")) {
 
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cliente", cli);
-            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-            
+            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");          
             
             return cli;
             
         } else {
         	
-            FacesContext.getCurrentInstance().addMessage(null , new FacesMessage(FacesMessage.SEVERITY_WARN,"Error","Client no existe")); 
+            FacesContext.getCurrentInstance().addMessage(null , new FacesMessage(FacesMessage.SEVERITY_WARN,"Error","Client does no exist")); 
             return null;
         }
         
