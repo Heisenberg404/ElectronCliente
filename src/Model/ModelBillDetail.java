@@ -31,11 +31,6 @@ public class ModelBillDetail {
 	public void saveBill(Client id_client, float total, List<Product> lstProduct) throws Exception {
 		Connection con = conn.getConnection();
 		Client cli = new Client();
-		//Date fecha = 
-		/*DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		String fechaString = dateFormat.format(fecha);
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-		Date fecha2 = (Date) formato.parse(fechaString);*/
 		
 		java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 		

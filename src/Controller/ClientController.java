@@ -3,7 +3,9 @@ package Controller;
 import java.io.IOException;
 import java.io.Serializable;
 
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
@@ -11,13 +13,14 @@ import Beans.Client;
 import Model.ModelCliente;
 
 
+@ApplicationScoped
 @ManagedBean(name = "ControllerClient")
-@ViewScoped
 public class ClientController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	ModelCliente modelClient = new ModelCliente();
-	public Client sessionClient = new Client();
+	@ManagedProperty("#{beanClient}")
+	public Client sessionClient;
 
 	public void saveClient(Client Clients) {
 		try {

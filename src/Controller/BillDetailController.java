@@ -1,5 +1,6 @@
 package Controller;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,43 +10,36 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+
 import Beans.Client;
 import Beans.Bill;
 import Beans.Bill_detail;
 import Beans.Product;
 import Model.ModelBillDetail;
 
-
-@ManagedBean(name = "ControllerBillDetail")
 @ApplicationScoped
+@ManagedBean(name = "ControllerBillDetail")
 public class BillDetailController implements Serializable{
 
 	ModelBillDetail modelBillDetail = new ModelBillDetail();
-
 	private static final long serialVersionUID = 1L;
+	List<Product> lstBill = new ArrayList<Product>();	
+	
+	//to do change to float
+	int total;
+	
+	
+	public void setTotal(int total) {
+		this.total = total;
+	}
 
-	List<Product> lstBill = new ArrayList<Product>();
-	
-	
-	
-	
-	
-	
-	float total  =5000;
-	
 
 	public float getTotal() {
 		
 		
 		return total;
 	}
-
-
-	public void setTotal(float total) {
-		this.total = total;
-	}
-
-
 	public List<Product> getLstBill() {
 		return lstBill;
 	}
@@ -68,57 +62,29 @@ public class BillDetailController implements Serializable{
 		super();
 	}
 
-
-	//@PostConstruct
-	/*public void init() {
+	public void addToCart(Product product){
+		lstBill.add(product);
+		total += product.getPrice(); 
+		
+	}
+		
+	
+	public void saveBill(Client client)
+	{
+		
 		try {
-			//llenarLista();
-			totalfactura();
+			float totalF = (float)total; 
+			modelBillDetail.saveBill(client,totalF,lstBill);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}*/
-	
-	public void addToCart(Product product){
-		lstBill.add(product);
-		
 	}
 	
-	public void llenarLista()
-	{
-		List<Product> lstllenar = new ArrayList<Product>();	
-		
-		
-		lstllenar.add(new Product(2,"moto",1,5000,4,1,null,"ruta",2222));
-		lstllenar.add(new Product(2,"carro",2,5000,2,1,null,"ruta",2222));
-		lstllenar.add(new Product(2,"moto",1,6000,3,1,null,"ruta",2222));
-		lstllenar.add(new Product(2,"moto",2,7000,2,1,null,"ruta",2222));
-		lstllenar.add(new Product(2,"moto",1,8000,1,1,null,"ruta",2222));
-		
-		lstBill=lstllenar;
-		//id_client = 45;
-	}
-	public void totalfactura() throws Exception{
-		//Bill_detail objTotal = new Bill_detail();
-		for (Product objTotal : lstBill ){
-			total = total + objTotal.getPrice();
-		}
-	}
-	
-
-		
-	
-	public void saveBill()
-	{
-		
+	public void redirectToCart(String username) {
 		try {
-			Client client = new Client();
-			client.setPass("1234");
-			client.setUsername("ale");
-					
-			modelBillDetail.saveBill(client,total,lstBill);
-		} catch (Exception e) {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("Facturacion.xhtml");
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

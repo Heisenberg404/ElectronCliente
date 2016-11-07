@@ -20,14 +20,14 @@
 				</p:column>
 				<p:column style="width: 10%; text-align: right;">
 					<h:form id="formCloseS">
-						<h:outputText value="#{beanClient.username}"></h:outputText>
+						<h:outputText value="#{productController.client.username}"></h:outputText>
 						<p:commandButton value="Logout" icon="ui-icon-closethick"
 							actionListener="#{ControllerClient.closeSession()}"
 							style="font-size: 14px;" />
 					</h:form>
 					<h:form id="formCart">
-						<p:commandButton value="Go to Cart" id="withIcon" 
-							action="#{productController.redirectToCart()}"
+						<p:commandButton value="Go to Cart" id="withIcon"
+							action="#{ControllerBillDetail.redirectToCart(productController.client.username)}"
 							icon="fa fa-fw fa-cart-plus" />
 					</h:form>
 				</p:column>
@@ -41,8 +41,41 @@
 	<p:layout style="min-width:400px;min-height:800px;">
 		<p:layoutUnit gutter="0" position="west" resizable="true" size="300"
 			minSize="40" maxSize="300">
-	        	to do Filters
-	    	</p:layoutUnit>
+			<h:form id="leftMenu">
+				<p:growl autoUpdate="true" />
+
+				<p:panelMenu style="width:100%">
+					<p:submenu label="Products Type">
+						<p:menuitem value="Family" icon="ui-icon-person"
+							action="#{productController.filterListProductType(1)}"
+							update="form:cars" />
+						<p:menuitem value="Tv Video"
+							action="#{productController.filterListProductType(2)}"
+							icon="ui-icon-video" update="form:cars" />
+						<p:menuitem value="Audio"
+							action="#{productController.filterListProductType(3)}"
+							icon="ui-icon-volume-on" update="form:cars" />
+						<p:menuitem value="Computers"
+							action="#{productController.filterListProductType(4)}"
+							icon="ui-icon-mail-closed" update="form:cars" />
+						<p:menuitem value="Tablets"
+							action="#{productController.filterListProductType(5)}"
+							icon="ui-icon-note" update="form:cars" />
+						<p:menuitem value="Sports"
+							action="#{productController.filterListProductType(6)}"
+							icon="ui-icon-play" update="form:cars" />
+					</p:submenu>
+
+					<p:separator />
+					<p:submenu label="reset">
+						<p:menuitem value="Reset filter"
+							action="#{productController.resetFilters()}" icon="ui-icon-home"
+							update="form:cars" />
+
+					</p:submenu>
+				</p:panelMenu>
+			</h:form>
+		</p:layoutUnit>
 
 		<p:layoutUnit position="center">
 			<h:form id="form">
