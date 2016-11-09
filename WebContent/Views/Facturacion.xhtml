@@ -74,10 +74,10 @@
 
 				<p:commandButton value="BUY PRODUCTS"
 					actionListener="#{ControllerBillDetail.saveBill(beanClient)}"
-					style="font-size: 14px;" />
+					style="font-size: 14px;" /><br/><br/>
 				<p:outputLabel value="Client: " />
 				<h:outputText value="#{beanClient.username}"></h:outputText>
-
+				<br/><br/>
 				<p:outputLabel value="Total: " />
 				<h:outputText value="#{ControllerBillDetail.total}"
 					style="margin-left: 12px;" />
