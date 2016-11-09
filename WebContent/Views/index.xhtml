@@ -21,15 +21,18 @@
 				</p:column>
 				<p:column style="width: 10%; text-align: right;">
 					<h:form id="formCloseS">
-						<h:outputText value="#{productController.client.username}"></h:outputText>
+						
+						<h:outputText value="#{productController.client.username}"/>
+						<br/><br/>
 						<p:commandButton value="Logout" icon="ui-icon-closethick"
 							actionListener="#{ControllerClient.closeSession()}"
 							style="font-size: 14px;" />
 					</h:form>
 					<h:form id="formCart">
-						<p:commandButton value="Go to Cart" id="withIcon"
+<!-- 						<p:commandButton id="iconOnly" icon="ui-icon-cart" title="Go to cart!" /> -->
+						<p:commandButton value="Cart!" id="withIcon"
 							action="#{ControllerBillDetail.redirectToCart(productController.client.username)}"
-							icon="fa fa-fw fa-cart-plus" />
+							icon="ui-icon-cart" />
 					</h:form>
 				</p:column>
 

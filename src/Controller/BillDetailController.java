@@ -85,4 +85,9 @@ public class BillDetailController implements Serializable {
 			e.printStackTrace();
 		}
 	}
+	
+	public void removeItem(Product item) {
+		lstBill.remove(item);
+		total = total - item.getPrice();
+	   }
 }

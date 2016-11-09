@@ -134,6 +134,7 @@ public class ProductController implements Serializable {
     
     public void resetFilters(){
     	try {
+    		products.clear();
 			products = modelProduct.getProducts();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

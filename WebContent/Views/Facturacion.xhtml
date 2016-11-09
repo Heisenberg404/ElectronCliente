@@ -55,13 +55,21 @@
 						<h:outputText value="#{pro.active}" />
 					</p:column>
 
+					<p:column>
+						<f:facet name="delete">
+							<h:outputText value="" />
+						</f:facet>
+						<p:commandButton icon="ui-icon-close" title="remove from cart"
+							actionListener="#{ControllerBillDetail.removeItem(pro)}" update="TableShowProduct, formTotal" />
+					</p:column>
+
 				</p:dataTable>
 
 			</h:form>
 		</div>
 		<div class="row" align="center">
 
-			<h:form>
+			<h:form id="formTotal">
 
 
 				<p:commandButton value="BUY PRODUCTS"
